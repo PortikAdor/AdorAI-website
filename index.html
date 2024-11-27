@@ -22,7 +22,7 @@
 
         // 3. Create Renderer
         const renderer = new THREE.WebGLRenderer();
-        renderer.setSize(600, 300);  // Set the renderer size to match the container (600x300px)
+        renderer.setSize(window.innerWidth, window.innerHeight);  // Adjust size to fill the window
         document.body.appendChild(renderer.domElement);
 
         // 4. Create Cube Geometry and Material
@@ -47,6 +47,13 @@
 
         // 7. Start Animation
         animate();
+
+        // 8. Handle Window Resize
+        window.addEventListener('resize', () => {
+            renderer.setSize(window.innerWidth, window.innerHeight); // Adjust canvas size
+            camera.aspect = window.innerWidth / window.innerHeight;  // Update camera aspect ratio
+            camera.updateProjectionMatrix();  // Update projection matrix
+        });
     </script>
 </body>
 </html>
